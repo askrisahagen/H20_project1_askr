@@ -21,8 +21,3 @@ class Pendulum:
         if angles == "deg":
             from math import pi
             self.y0 = [y0[0]*pi/180, y0[1]]
-
-        import numpy as np
-        sol = scipy.integrate.solve_ivp(self, self.T, self.y0, 
-                t_eval=np.linspace(self.T[0], self.T[1], (self.T[1]-self.T[0])/self.dt))
-        return sol.t, sol.y
