@@ -99,9 +99,6 @@ class DoublePendulum:
         K2 = .5*self.M2*(self.vy2**2 + self.vx2**2)
         return K1 + K2
 
-    #@property
-    
-
     @property
     def create_animation(self):
         # Create empty figure
@@ -135,40 +132,46 @@ class DoublePendulum:
         self.animation.save(filename, fps=60)
 
 
-"""
-# Dette er ett eksempel
+if __name__ == "__main__":
+    pend = DoublePendulum()
+    pend.solve((m.pi/6, 0.15, m.pi/6, 0.15), [0,10], 0.02) # løser bevegelsen til pendelen
 
-pend = DoublePendulum()
-pend.solve((m.pi/6, 0.15, m.pi/6, 0.15), [0,10], 0.02) # løser bevegelsen til pendelen
+    """
+    Oppgave 4
+    Animere dobbel pendel. 
+    """
+    pend.create_animation # lager animasjonen
+    pend.save_animation("example_simulation.mp4") #lagrer den på pcen
 
-pend.create_animation # lager animasjonen
-pend.save_animation("example_simulation.mp4") #lagrer den på pcen
+    import matplotlib.pyplot as plt
+    plt.plot(pend.x1, pend.y1) 
+    plt.plot(pend.x2, pend.y2) 
+    plt.show()
 
-import matplotlib.pyplot as plt
-plt.plot(pend.x1, pend.y1) 
-plt.plot(pend.x2, pend.y2) 
-plt.show()
+    plt.plot(pend.t, pend.kinetic)
+    plt.plot(pend.t, pend.potential)
+    plt.plot(pend.t, pend.kinetic + pend.potential)
+    plt.show() # plotter kinetic og potential i samme graf
 
-plt.plot(pend.t, pend.kinetic)
-plt.plot(pend.t, pend.potential)
-plt.plot(pend.t, pend.kinetic + pend.potential)
-plt.show() # plotter kinetic og potential i samme graf
-"""
-"""
-pend = DoublePendulum()
-pend.solve((m.pi/6, 0.15, m.pi/6, 0.15), [0,10], 0.02)
-plt.plot(pend.x1, pend.y1, "b")
-plt.plot(pend.x2, pend.y2, "b")
+if __name__ == "__main__":
 
-pend = DoublePendulum()
-pend.solve((m.pi/5, 0.1, m.pi/4, 2), [0,10], 0.02)
-plt.plot(pend.x1, pend.y1, "g")
-plt.plot(pend.x2, pend.y2, "g")
+    """
+    Oppgave 5
+    Endre initial verdiene over samme t verdier
+    """
+    pend = DoublePendulum()
+    pend.solve((m.pi/6, 0.15, m.pi/6, 0.15), [0,10], 0.02)
+    plt.plot(pend.x1, pend.y1, "b")
+    plt.plot(pend.x2, pend.y2, "b")
 
-pend = DoublePendulum(L1 = 1.1, M1 = 9, M2 = 1.1, L2 = 0.9)
-pend.solve((m.pi/6, 0.15, m.pi/6, 0.15), [0,10], 0.02)
-plt.plot(pend.x1, pend.y1, "r")
-plt.plot(pend.x2, pend.y2, "r")
+    pend = DoublePendulum()
+    pend.solve((m.pi/5, 0.1, m.pi/4, 2), [0,10], 0.02)
+    plt.plot(pend.x1, pend.y1, "g")
+    plt.plot(pend.x2, pend.y2, "g")
 
-plt.show()
-"""
+    pend = DoublePendulum(L1 = 1.1, M1 = 9, M2 = 1.1, L2 = 0.9)
+    pend.solve((m.pi/6, 0.15, m.pi/6, 0.15), [0,10], 0.02)
+    plt.plot(pend.x1, pend.y1, "r")
+    plt.plot(pend.x2, pend.y2, "r")
+
+    plt.show()

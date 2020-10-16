@@ -57,21 +57,19 @@ class Pendulum:
         return .5*self.M*(self.vy**2 + self.vx**2)
 
 
-"""
-# Dette er ett eksempel
+if __name__ == "__main__":
 
-pend = Pendulum(L=2.7)
-pend.solve((m.pi/6,0.15), [0,30], 0.2) # løser bevegelsen til pendelen
+    pend = Pendulum(L=2.7)
+    pend.solve((m.pi/6,0.15), [0,30], 0.2) # løser bevegelsen til pendelen
 
-import matplotlib.pyplot as plt
-plt.plot(pend.x, pend.y) # plotter bevegelsen over tid
-plt.show()
+    import matplotlib.pyplot as plt
+    plt.plot(pend.x, pend.y) # plotter bevegelsen over tid
+    plt.show()
 
-plt.plot(pend.t, pend.kinetic)
-plt.plot(pend.t, pend.potential)
-plt.plot(pend.t, pend.kinetic + pend.potential)
-plt.show() # plotter kinetic og potential i samme graf
-"""
+    plt.plot(pend.t, pend.kinetic)
+    plt.plot(pend.t, pend.potential)
+    plt.plot(pend.t, pend.kinetic + pend.potential)
+    plt.show() # plotter kinetic og potential i samme graf
 
 class DampenedPendulum(Pendulum):
     
@@ -84,21 +82,17 @@ class DampenedPendulum(Pendulum):
         motion = y[1]
         return (motion, angularvelocity)
 
-"""
-# Dette er ett eksempel på DampenedPendulum
+if __name__ == "__main__":
+    pend = DampenedPendulum(0.2, L=2.7)
+    pend.solve((m.pi/6,0.15), [0,30], 0.2) # løser bevegelsen til pendelen
 
-pend = DampenedPendulum(0.2, L=2.7)
-pend.solve((m.pi/6,0.15), [0,30], 0.2) # løser bevegelsen til pendelen
+    import matplotlib.pyplot as plt
+    plt.plot(pend.x, pend.y) # plotter bevegelsen over tid
+    plt.show()
 
-import matplotlib.pyplot as plt
-plt.plot(pend.x, pend.y) # plotter bevegelsen over tid
-plt.show()
+    plt.plot(pend.t, pend.kinetic)
+    plt.plot(pend.t, pend.potential)
+    plt.plot(pend.t, pend.kinetic + pend.potential)
+    plt.show() # plotter kinetic og potential i samme graf
 
-plt.plot(pend.t, pend.kinetic)
-plt.plot(pend.t, pend.potential)
-plt.plot(pend.t, pend.kinetic + pend.potential)
-plt.show() # plotter kinetic og potential i samme graf
-
-# Her er det veldig lett å se på plottet til engeri at den går nedover med tid
-
-"""
+    # Her er det veldig lett å se på plottet til engeri at den går nedover med tid
